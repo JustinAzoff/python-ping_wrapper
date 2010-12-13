@@ -13,12 +13,12 @@ class NmapPinger(BasePinger):
                 ip = line.split()[1]
                 yield ip
 
-    def ping(self, hosts):
-        """For each address in addrs, run a nmap ping scan on them.  each address
+    def ping_many_iter(self, hosts):
+        """For each address in hosts, run a nmap ping scan on them.  each address
         can be a single IP or any type of notation that nmap supports"""
         
         f = tempfile.NamedTemporaryFile(dir='/tmp')
-        for ip in addrs:
+        for ip in hosts:
             f.write("%s\n" % ip)
         f.flush()
         
@@ -34,10 +34,10 @@ class NmapPinger(BasePinger):
         os_wait()
 
 
-    def ping_many(self, addrs):
+    def ping_many_updown(self, hosts):
         """Ping a list of ips, return a tuple of (up nodes, down nodes)"""
-        all = list(addrs)
-        up = set(ping(all))
+        all = list(hosts)
+        up = set(self.ping_many_iter(all))
         down = [x for x in all if x not in up]
         return up, down
 
