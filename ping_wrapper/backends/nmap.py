@@ -52,3 +52,5 @@ class NmapPinger(BasePinger):
         os_wait()
 
         return 'Status: Up' in out
+
+pinger_class = NmapPinger

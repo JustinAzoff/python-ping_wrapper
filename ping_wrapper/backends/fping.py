@@ -41,3 +41,5 @@ class FpingPinger(BasePinger):
         for state, ip in self.ping_many_updown_iter(hosts, fast):
             lists[state].append(ip)
         return up, down
+
+pinger_class = FpingPinger
