@@ -8,14 +8,14 @@ backends = {
 
 default_priority = "nmap", "fping"
 
-def get_backend(priority=None):
+def get_backend(priority=None, **kwargs):
     if not priority:
         priority = default_priority
 
     for name in priority:
         b = backends.get(name)
         if b:
-            inst = b()
+            inst = b(**kwargs)
             if inst.is_available():
                 return inst
 
