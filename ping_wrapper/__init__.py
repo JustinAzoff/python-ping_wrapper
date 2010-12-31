@@ -21,6 +21,8 @@ def get_backend(priority=None, **kwargs):
             if inst.is_available():
                 return inst
 
+    raise RuntimeError("No pinger backends Available")
+
 def ping_one(host):
     return get_backend().ping_one(host)
 
