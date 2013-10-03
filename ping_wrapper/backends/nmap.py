@@ -42,7 +42,7 @@ class NmapPinger(BasePinger):
         return up, down
 
     def ping_one(self, host):
-        cmd = [self.program_path, "--max-rtt-timeout", "2000", "-n", "-sP", "-PE", "-oG", "-", host]
+        cmd = [self.program_path, "--max-rtt-timeout", "2000ms", "-n", "-sP", "-PE", "-oG", "-", host]
         if self.use_sudo:
             cmd = ["sudo"] + cmd
 
