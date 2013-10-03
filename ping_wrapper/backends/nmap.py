@@ -22,7 +22,7 @@ class NmapPinger(BasePinger):
             f.write("%s\n" % ip)
         f.flush()
         
-        cmd = [self.program_path, "--max-rtt-timeout", "4000", "-n", "-sP", "-PE", "-oG", "-", "-iL", f.name]
+        cmd = [self.program_path, "--max-rtt-timeout", "4000ms", "-n", "-sP", "-PE", "-oG", "-", "-iL", f.name]
         if self.use_sudo:
             cmd = ["sudo"] + cmd
 
