@@ -13,7 +13,7 @@ class FpingPinger(BasePinger):
         """Ping a list of ips, return an iterator of state, node"""
         cmd = [self.program_path]
         if fast:
-            cmd.extend(["-r", "1"])
+            cmd.extend(["-r", "1", "-t", "100"])
 
         sub = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True)
         for ip in hosts:
